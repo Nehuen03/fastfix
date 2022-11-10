@@ -23,7 +23,7 @@
 
         public static function ruta(){
             //Local
-            return "http://localhost/Tutorial_HelpDesk/";
+            return "http://localhost/fastfix/";
 			//return "http://localhost:90/fastfix/";
             //return "http://localhost:90/PERSONAL_HelpDesk/";
             //Produccion
