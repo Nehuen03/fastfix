@@ -1,6 +1,6 @@
 var tabla;
-var usu_id =  $('#user_idx').val();
-var rol_id =  $('#rol_idx').val();
+//var usu_id =  $('#user_idx').val();
+//var rol_id =  $('#rol_idx').val();
 
 function init(){
     $("#ticket_form").on("submit",function(e){
@@ -9,12 +9,12 @@ function init(){
 }
 
 $(document).ready(function(){
-
+    /*
     $.post("../../controller/usuario.php?op=combo", function (data) {
         $('#usu_asig').html(data);
     });
 
-    if (rol_id==1){
+    if (rol_id==1){*/
         tabla=$('#ticket_data').dataTable({
             "aProcessing": true,
             "aServerSide": true,
@@ -32,12 +32,12 @@ $(document).ready(function(){
                 url: '../../controller/ticket.php?op=listar_x_usu',
                 type : "post",
                 dataType : "json",	
-                data:{ usu_id : usu_id },						
+                data:{ usu_id : 1 },						
                 error: function(e){
                     console.log(e.responseText);	
                 }
             },
-            "ordering": false,
+            //"ordering": false,
             "bDestroy": true,
             "responsive": true,
             "bInfo":true,
@@ -68,7 +68,7 @@ $(document).ready(function(){
                 }
             }     
         }).DataTable(); 
-    }else{
+    /*else{
         tabla=$('#ticket_data').dataTable({
             "aProcessing": true,
             "aServerSide": true,
@@ -121,12 +121,13 @@ $(document).ready(function(){
             }     
         }).DataTable(); 
     }
-
+    */
 });
 
 function ver(tick_id){
-    window.open('http://localhost:90/PERSONAL_HelpDesk/view/DetalleTicket/?ID='+ tick_id +'');
+    window.open('http://localhost/fastfix/view/DetalleTicket/?ID='+ tick_id +'');
 }
+/*
 
 function asignar(tick_id){
     $.post("../../controller/ticket.php?op=mostrar", {tick_id : tick_id}, function (data) {
@@ -189,6 +190,6 @@ function CambiarEstado(tick_id){
             });
         }
     });
-}
+}*/
 
 init();
