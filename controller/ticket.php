@@ -162,7 +162,7 @@
                         $output["tick_estado"] = '<span class="label label-pill label-danger">Cerrado</span>';
                     }
 
-                    $output["tick_estado_texto"] = $row["tick_estado"];
+                    // $output["tick_estado_texto"] = $row["tick_estado"];
 
                     $output["fech_crea"] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
                     $output["usu_nom"] = $row["usu_nom"];

@@ -40,7 +40,35 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
-
+        
+        public function listar_ticket_x_id($tick_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT 
+                tm_ticket.tick_id,
+                tm_ticket.usu_id,
+                tm_ticket.cat_id,
+                tm_ticket.tick_titulo,
+                tm_ticket.tick_descrip,
+                tm_ticket.tick_estado,
+                tm_ticket.fech_crea,
+                tm_usuario.usu_nom,
+                tm_usuario.usu_ape,
+                tm_usuario.usu_correo,
+                tm_categoria.cat_nom
+                FROM 
+                tm_ticket
+                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
+                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
+                WHERE
+                tm_ticket.est = 1
+                AND tm_ticket.tick_id = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+        
         public function listar_ticket(){
             $conectar= parent::conexion();
             parent::set_names();
@@ -88,45 +116,12 @@
             return $resultado=$sql->fetchAll();
         }
 
+
         /*  $sql1="select last_insert_id() as 'tick_id';";
             $sql1=$conectar->prepare($sql1);
             $sql1->execute();
             return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
         }
-
-        
-
-        public function listar_ticket_x_id($tick_id){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT 
-                tm_ticket.tick_id,
-                tm_ticket.usu_id,
-                tm_ticket.cat_id,
-                tm_ticket.tick_titulo,
-                tm_ticket.tick_descrip,
-                tm_ticket.tick_estado,
-                tm_ticket.fech_crea,
-                tm_usuario.usu_nom,
-                tm_usuario.usu_ape,
-                tm_usuario.usu_correo,
-                tm_categoria.cat_nom
-                FROM 
-                tm_ticket
-                INNER join tm_categoria on tm_ticket.cat_id = tm_categoria.cat_id
-                INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
-                WHERE
-                tm_ticket.est = 1
-                AND tm_ticket.tick_id = ?";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $tick_id);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
-
-        
-
-        
 
         public function insert_ticketdetalle($tick_id,$usu_id,$tickd_descrip){
             $conectar= parent::conexion();
