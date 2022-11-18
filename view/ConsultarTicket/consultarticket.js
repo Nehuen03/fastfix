@@ -1,6 +1,6 @@
 var tabla;
-//var usu_id =  $('#user_idx').val();
-//var rol_id =  $('#rol_idx').val();
+var usu_id =  $('#user_idx').val();
+var rol_id =  $('#rol_idx').val();
 
 function init(){
     $("#ticket_form").on("submit",function(e){
@@ -9,12 +9,12 @@ function init(){
 }
 
 $(document).ready(function(){
-    /*
-    $.post("../../controller/usuario.php?op=combo", function (data) {
-        $('#usu_asig').html(data);
-    });
 
-    if (rol_id==1){*/
+    // $.post("../../controller/usuario.php?op=combo", function (data) {
+    //     $('#usu_asig').html(data);
+    // });
+
+    if (rol_id==1){
         tabla=$('#ticket_data').dataTable({
             "aProcessing": true,
             "aServerSide": true,
@@ -32,7 +32,7 @@ $(document).ready(function(){
                 url: '../../controller/ticket.php?op=listar_x_usu',
                 type : "post",
                 dataType : "json",	
-                data:{ usu_id : 1 },						
+                data:{ usu_id : usu_id },						
                 error: function(e){
                     console.log(e.responseText);	
                 }
@@ -68,7 +68,7 @@ $(document).ready(function(){
                 }
             }     
         }).DataTable(); 
-    /*else{
+    }else{
         tabla=$('#ticket_data').dataTable({
             "aProcessing": true,
             "aServerSide": true,
@@ -121,7 +121,6 @@ $(document).ready(function(){
             }     
         }).DataTable(); 
     }
-    */
 });
 
 function ver(tick_id){

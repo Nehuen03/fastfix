@@ -6,10 +6,7 @@
 
         protected function Conexion(){
             try {
-                //Local
 				$conectar = $this->dbh = new PDO("mysql:local=localhost;dbname=fastfix","root","");
-                //Produccion
-                //$conectar = $this->dbh = new PDO("mysql:host=localhost;dbname=andercode_helpdesk1","andercode","contraseña");
 				return $conectar;
 			} catch (Exception $e) {
 				print "¡Error BD!: " . $e->getMessage() . "<br/>";
@@ -22,12 +19,7 @@
         }
 
         public static function ruta(){
-            //Local
             return "http://localhost/fastfix/";
-			//return "http://localhost:90/fastfix/";
-            //return "http://localhost:90/PERSONAL_HelpDesk/";
-            //Produccion
-            //return "http://helpdesk.anderson-bastidas.com/";
 		}
 
     }

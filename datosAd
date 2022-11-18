@@ -1,0 +1,238 @@
+//         toolbar: [
+//             ['style', ['bold', 'italic', 'underline', 'clear']],
+//             ['font', ['strikethrough', 'superscript', 'subscript']],
+//             ['fontsize', ['fontsize']],
+//             ['color', ['color']],
+//             ['para', ['ul', 'ol', 'paragraph']],
+//             ['height', ['height']]
+//         ]
+
+//         toolbar: [
+//             ['style', ['bold', 'italic', 'underline', 'clear']],
+//             ['font', ['strikethrough', 'superscript', 'subscript']],
+//             ['fontsize', ['fontsize']],
+//             ['color', ['color']],
+//             ['para', ['ul', 'ol', 'paragraph']],
+//             ['height', ['height']]
+//         ]
+//     });  
+
+//     $('#tickd_descripusu').summernote('disable');
+
+//     tabla=$('#documentos_data').dataTable({
+//         "aProcessing": true,
+//         "aServerSide": true,
+//         dom: 'Bfrtip',
+//         "searching": true,
+//         lengthChange: false,
+//         colReorder: true,
+//         buttons: [
+//                 'copyHtml5',
+//                 'excelHtml5',
+//                 'csvHtml5',
+//                 'pdfHtml5'
+//                 ],
+//         "ajax":{
+//             url: '../../controller/documento.php?op=listar',
+//             type : "post",
+//             data : {tick_id:tick_id},
+//             dataType : "json",
+//             error: function(e){
+//                 console.log(e.responseText);
+//             }
+//         },
+//         "bDestroy": true,
+//         "responsive": true,
+//         "bInfo":true,
+//         "iDisplayLength": 10,
+//         "autoWidth": false,
+//         "language": {
+//             "sProcessing":     "Procesando...",
+//             "sLengthMenu":     "Mostrar _MENU_ registros",
+//             "sZeroRecords":    "No se encontraron resultados",
+//             "sEmptyTable":     "Ningún dato disponible en esta tabla",
+//             "sInfo":           "Mostrando un total de _TOTAL_ registros",
+//             "sInfoEmpty":      "Mostrando un total de 0 registros",
+//             "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+//             "sInfoPostFix":    "",
+//             "sSearch":         "Buscar:",
+//             "sUrl":            "",
+//             "sInfoThousands":  ",",
+//             "sLoadingRecords": "Cargando...",
+//             "oPaginate": {
+//                 "sFirst":    "Primero",
+//                 "sLast":     "Último",
+//                 "sNext":     "Siguiente",
+//                 "sPrevious": "Anterior"
+//             },
+//             "oAria": {
+//                 "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+//                 "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+//             }
+//         }
+//     }).DataTable();
+
+// });
+
+// $(document).on("click","#btnenviar", function(){
+//     var tick_id = getUrlParameter('ID');
+//     var usu_id = $('#user_idx').val();
+//     var tickd_descrip = $('#tickd_descrip').val();
+
+//     if ($('#tickd_descrip').summernote('isEmpty')){
+//         swal("Advertencia!", "Falta Descripción", "warning");
+//     }else{
+//         $.post("../../controller/ticket.php?op=insertdetalle", { tick_id:tick_id,usu_id:usu_id,tickd_descrip:tickd_descrip}, function (data) {
+//             listardetalle(tick_id);
+//             $('#tickd_descrip').summernote('reset');
+//             swal("Correcto!", "Registrado Correctamente", "success");
+//         }); 
+//     }
+// });
+
+// $(document).on("click","#btncerrarticket", function(){
+//     swal({
+//         title: "HelpDesk",
+//         text: "Esta seguro de Cerrar el Ticket?",
+//         type: "warning",
+//         showCancelButton: true,
+//         confirmButtonClass: "btn-warning",
+//         confirmButtonText: "Si",
+//         cancelButtonText: "No",
+//         closeOnConfirm: false
+//     },
+//     function(isConfirm) {
+//         if (isConfirm) {
+//             var tick_id = getUrlParameter('ID');
+//             var usu_id = $('#user_idx').val();
+//             $.post("../../controller/ticket.php?op=update", { tick_id : tick_id,usu_id : usu_id }, function (data) {
+
+//             });
+
+//             $.post("../../controller/email.php?op=ticket_cerrado", {tick_id : tick_id}, function (data) {
+
+//             });
+
+
+//             listardetalle(tick_id);
+
+//             swal({
+//                 title: "HelpDesk!",
+//                 text: "Ticket Cerrado correctamente.",
+//                 type: "success",
+//                 confirmButtonClass: "btn-success"
+//             });
+//         }
+//     });
+// });
+
+//         console.log( data.tick_estado_texto);
+//         if (data.tick_estado_texto == "Cerrado"){
+//             $('#pnldetalle').hide();
+//         }
+//     });
+
+    
+// });        
+
+
+
+
+
+
+
+
+
+
+// require_once("../models/Usuario.php");
+//     $usuario = new Usuario();
+
+//     require_once("../models/Documento.php");
+//     $documento = new Documento();
+
+
+/*$datos=$ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["tick_titulo"],$_POST["tick_descrip"]);
+            if (is_array($datos)==true and count($datos)>0){
+                foreach ($datos as $row){
+                    $output["tick_id"] = $row["tick_id"];
+
+                    if ($_FILES['files']['name']==0){
+
+                    }else{
+                        $countfiles = count($_FILES['files']['name']);
+                        $ruta = "../public/document/".$output["tick_id"]."/";
+                        $files_arr = array();
+
+                        if (!file_exists($ruta)) {
+                            mkdir($ruta, 0777, true);
+                        }
+
+                        for ($index = 0; $index < $countfiles; $index++) {
+                            $doc1 = $_FILES['files']['tmp_name'][$index];
+                            $destino = $ruta.$_FILES['files']['name'][$index];
+
+                            $documento->insert_documento( $output["tick_id"],$_FILES['files']['name'][$index]);
+
+                            move_uploaded_file($doc1,$destino);
+                        }
+                    }
+                }
+            }
+            echo json_encode($datos);
+        break;
+
+        case "update":
+            $ticket->update_ticket($_POST["tick_id"]);
+            $ticket->insert_ticketdetalle_cerrar($_POST["tick_id"],$_POST["usu_id"]);
+        break;
+
+        case "reabrir":
+            $ticket->reabrir_ticket($_POST["tick_id"]);
+            $ticket->insert_ticketdetalle_reabrir($_POST["tick_id"],$_POST["usu_id"]);
+        break;
+
+        case "asignar":
+            $ticket->update_ticket_asignacion($_POST["tick_id"],$_POST["usu_asig"]);
+        break;
+
+        case "insertdetalle":
+            $ticket->insert_ticketdetalle($_POST["tick_id"],$_POST["usu_id"],$_POST["tickd_descrip"]);
+        break;
+
+        case "total";
+            $datos=$ticket->get_ticket_total();  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+
+        case "totalabierto";
+            $datos=$ticket->get_ticket_totalabierto();  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+
+        case "totalcerrado";
+            $datos=$ticket->get_ticket_totalcerrado();  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
+
+        case "grafico";
+            $datos=$ticket->get_ticket_grafico();  
+            echo json_encode($datos);
+        break;*/
