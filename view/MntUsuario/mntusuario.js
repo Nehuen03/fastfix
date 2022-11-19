@@ -22,7 +22,7 @@ function guardaryeditar(e){
             $('#usuario_data').DataTable().ajax.reload();
 
             swal({
-                title: "HelpDesk!",
+                title: "Fastfix!",
                 text: "Completado.",
                 type: "success",
                 confirmButtonClass: "btn-success"
@@ -96,14 +96,14 @@ function editar(usu_id){
         $('#usu_correo').val(data.usu_correo);
         $('#usu_pass').val(data.usu_pass);
         $('#rol_id').val(data.rol_id).trigger('change');
-    }); 
+    });
 
     $('#modalmantenimiento').modal('show');
 }
 
 function eliminar(usu_id){
     swal({
-        title: "HelpDesk",
+        title: "Fastfix",
         text: "Esta seguro de Eliminar el registro?",
         type: "error",
         showCancelButton: true,
@@ -121,7 +121,7 @@ function eliminar(usu_id){
             $('#usuario_data').DataTable().ajax.reload();	
 
             swal({
-                title: "HelpDesk!",
+                title: "Fastfix!",
                 text: "Registro Eliminado.",
                 type: "success",
                 confirmButtonClass: "btn-success"

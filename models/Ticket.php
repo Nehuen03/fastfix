@@ -116,13 +116,6 @@
             return $resultado=$sql->fetchAll();
         }
 
-
-        /*  $sql1="select last_insert_id() as 'tick_id';";
-            $sql1=$conectar->prepare($sql1);
-            $sql1->execute();
-            return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
-        }
-
         public function insert_ticketdetalle($tick_id,$usu_id,$tickd_descrip){
             $conectar= parent::conexion();
             parent::set_names();
@@ -131,31 +124,6 @@
             $sql->bindValue(1, $tick_id);
             $sql->bindValue(2, $usu_id);
             $sql->bindValue(3, $tickd_descrip);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
-
-        public function insert_ticketdetalle_cerrar($tick_id,$usu_id){
-            $conectar= parent::conexion();
-            parent::set_names();
-                $sql="call sp_i_ticketdetalle_01(?,?)";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $tick_id);
-            $sql->bindValue(2, $usu_id);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
-
-        public function insert_ticketdetalle_reabrir($tick_id,$usu_id){
-            $conectar= parent::conexion();
-            parent::set_names();
-                $sql="	INSERT INTO td_ticketdetalle 
-                    (tickd_id,tick_id,usu_id,tickd_descrip,fech_crea,est) 
-                    VALUES 
-                    (NULL,?,?,'Ticket Re-Abierto...',now(),'1');";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $tick_id);
-            $sql->bindValue(2, $usu_id);
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
@@ -173,6 +141,44 @@
             $sql->execute();
             return $resultado=$sql->fetchAll();
         }
+
+        public function insert_ticketdetalle_cerrar($tick_id,$usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+                $sql="call sp_i_ticketdetalle_01(?,?)";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->bindValue(2, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+
+        /*  $sql1="select last_insert_id() as 'tick_id';";
+            $sql1=$conectar->prepare($sql1);
+            $sql1->execute();
+            return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
+        }
+
+        
+
+        
+
+        public function insert_ticketdetalle_reabrir($tick_id,$usu_id){
+            $conectar= parent::conexion();
+            parent::set_names();
+                $sql="	INSERT INTO td_ticketdetalle 
+                    (tickd_id,tick_id,usu_id,tickd_descrip,fech_crea,est) 
+                    VALUES 
+                    (NULL,?,?,'Ticket Re-Abierto...',now(),'1');";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $tick_id);
+            $sql->bindValue(2, $usu_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
+
+        
 
         public function reabrir_ticket($tick_id){
             $conectar= parent::conexion();

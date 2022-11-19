@@ -9,6 +9,11 @@
             $ticket->insert_ticket($_POST["usu_id"],$_POST["cat_id"],$_POST["tick_titulo"],$_POST["tick_descrip"]);
         break;
 
+        case "update":
+            $ticket->update_ticket($_POST["tick_id"]);
+            $ticket->insert_ticketdetalle_cerrar($_POST["tick_id"],$_POST["usu_id"]);
+        break;
+
         case "listar_x_usu":
             $datos=$ticket->listar_ticket_x_usu($_POST["usu_id"]);
             $data= Array();
@@ -162,7 +167,7 @@
                         $output["tick_estado"] = '<span class="label label-pill label-danger">Cerrado</span>';
                     }
 
-                    // $output["tick_estado_texto"] = $row["tick_estado"];
+                    $output["tick_estado_texto"] = $row["tick_estado"];
 
                     $output["fech_crea"] = date("d/m/Y H:i:s", strtotime($row["fech_crea"]));
                     $output["usu_nom"] = $row["usu_nom"];
@@ -171,6 +176,10 @@
                 }
                 echo json_encode($output);
             }   
-        break;   
+        break;
+
+        case "insertdetalle":
+            $ticket->insert_ticketdetalle($_POST["tick_id"],$_POST["usu_id"],$_POST["tickd_descrip"]);
+        break;
     }
 ?>
