@@ -62,38 +62,38 @@
             }   
         break;
 
-        // case "total";
-        //     $datos=$usuario->get_usuario_total_x_id($_POST["usu_id"]);  
-        //     if(is_array($datos)==true and count($datos)>0){
-        //         foreach($datos as $row)
-        //         {
-        //             $output["TOTAL"] = $row["TOTAL"];
-        //         }
-        //         echo json_encode($output);
-        //     }
-        //     break;
+        case "total";
+            $datos=$usuario->get_usuario_total_x_id($_POST["usu_id"]);  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
 
-        // case "totalabierto";
-        //     $datos=$usuario->get_usuario_totalabierto_x_id($_POST["usu_id"]);  
-        //     if(is_array($datos)==true and count($datos)>0){
-        //         foreach($datos as $row)
-        //         {
-        //             $output["TOTAL"] = $row["TOTAL"];
-        //         }
-        //         echo json_encode($output);
-        //     }
-        //     break;
+        case "totalabierto";
+            $datos=$usuario->get_usuario_totalabierto_x_id($_POST["usu_id"]);  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+        break;
 
-        // case "totalcerrado";
-        //     $datos=$usuario->get_usuario_totalcerrado_x_id($_POST["usu_id"]);  
-        //     if(is_array($datos)==true and count($datos)>0){
-        //         foreach($datos as $row)
-        //         {
-        //             $output["TOTAL"] = $row["TOTAL"];
-        //         }
-        //         echo json_encode($output);
-        //     }
-        //     break;
+        case "totalcerrado";
+            $datos=$usuario->get_usuario_totalcerrado_x_id($_POST["usu_id"]);  
+            if(is_array($datos)==true and count($datos)>0){
+                foreach($datos as $row)
+                {
+                    $output["TOTAL"] = $row["TOTAL"];
+                }
+                echo json_encode($output);
+            }
+         break;
 
         // case "grafico";
         //     $datos=$usuario->get_usuario_grafico($_POST["usu_id"]);  

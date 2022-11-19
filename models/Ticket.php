@@ -154,61 +154,61 @@
         }
 
 
-        /*  $sql1="select last_insert_id() as 'tick_id';";
-            $sql1=$conectar->prepare($sql1);
-            $sql1->execute();
-            return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
-        }
+        //     $sql1="select last_insert_id() as 'tick_id';";
+        //     $sql1=$conectar->prepare($sql1);
+        //     $sql1->execute();
+        //     return $resultado=$sql1->fetchAll(pdo::FETCH_ASSOC);
+        // }
 
         
 
         
 
-        public function insert_ticketdetalle_reabrir($tick_id,$usu_id){
-            $conectar= parent::conexion();
-            parent::set_names();
-                $sql="	INSERT INTO td_ticketdetalle 
-                    (tickd_id,tick_id,usu_id,tickd_descrip,fech_crea,est) 
-                    VALUES 
-                    (NULL,?,?,'Ticket Re-Abierto...',now(),'1');";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $tick_id);
-            $sql->bindValue(2, $usu_id);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
+        // public function insert_ticketdetalle_reabrir($tick_id,$usu_id){
+        //     $conectar= parent::conexion();
+        //     parent::set_names();
+        //         $sql="	INSERT INTO td_ticketdetalle 
+        //             (tickd_id,tick_id,usu_id,tickd_descrip,fech_crea,est) 
+        //             VALUES 
+        //             (NULL,?,?,'Ticket Re-Abierto...',now(),'1');";
+        //     $sql=$conectar->prepare($sql);
+        //     $sql->bindValue(1, $tick_id);
+        //     $sql->bindValue(2, $usu_id);
+        //     $sql->execute();
+        //     return $resultado=$sql->fetchAll();
+        // }
 
         
 
-        public function reabrir_ticket($tick_id){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="update tm_ticket 
-                set	
-                    tick_estado = 'Abierto'
-                where
-                    tick_id = ?";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $tick_id);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
+        // public function reabrir_ticket($tick_id){
+        //     $conectar= parent::conexion();
+        //     parent::set_names();
+        //     $sql="update tm_ticket 
+        //         set	
+        //             tick_estado = 'Abierto'
+        //         where
+        //             tick_id = ?";
+        //     $sql=$conectar->prepare($sql);
+        //     $sql->bindValue(1, $tick_id);
+        //     $sql->execute();
+        //     return $resultado=$sql->fetchAll();
+        // }
 
-        public function update_ticket_asignacion($tick_id,$usu_asig){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="update tm_ticket 
-                set	
-                    usu_asig = ?,
-                    fech_asig = now()
-                where
-                    tick_id = ?";
-            $sql=$conectar->prepare($sql);
-            $sql->bindValue(1, $usu_asig);
-            $sql->bindValue(2, $tick_id);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }
+        // public function update_ticket_asignacion($tick_id,$usu_asig){
+        //     $conectar= parent::conexion();
+        //     parent::set_names();
+        //     $sql="update tm_ticket 
+        //         set	
+        //             usu_asig = ?,
+        //             fech_asig = now()
+        //         where
+        //             tick_id = ?";
+        //     $sql=$conectar->prepare($sql);
+        //     $sql->bindValue(1, $usu_asig);
+        //     $sql->bindValue(2, $tick_id);
+        //     $sql->execute();
+        //     return $resultado=$sql->fetchAll();
+        // }
 
         public function get_ticket_total(){
             $conectar= parent::conexion();
@@ -237,20 +237,20 @@
             return $resultado=$sql->fetchAll();
         } 
 
-        public function get_ticket_grafico(){
-            $conectar= parent::conexion();
-            parent::set_names();
-            $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
-                FROM   tm_ticket  JOIN  
-                    tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
-                WHERE    
-                tm_ticket.est = 1
-                GROUP BY 
-                tm_categoria.cat_nom 
-                ORDER BY total DESC";
-            $sql=$conectar->prepare($sql);
-            $sql->execute();
-            return $resultado=$sql->fetchAll();
-        }*/
+        // public function get_ticket_grafico(){
+        //     $conectar= parent::conexion();
+        //     parent::set_names();
+        //     $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
+        //         FROM   tm_ticket  JOIN  
+        //             tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
+        //         WHERE    
+        //         tm_ticket.est = 1
+        //         GROUP BY 
+        //         tm_categoria.cat_nom 
+        //         ORDER BY total DESC";
+        //     $sql=$conectar->prepare($sql);
+        //     $sql->execute();
+        //     return $resultado=$sql->fetchAll();
+        // }
     }
 ?>
