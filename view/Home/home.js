@@ -32,8 +32,8 @@ $(document).ready(function(){
                 labels: ['Value'],
                 barColors: ["#1AB244"], 
             });
-        }); 
-
+        });
+         
     }else{
         $.post("../../controller/ticket.php?op=total",function (data) {
             data = JSON.parse(data);
@@ -63,8 +63,6 @@ $(document).ready(function(){
         }); 
 
     }
-
- 
 });
 
 init();

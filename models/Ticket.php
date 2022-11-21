@@ -4,7 +4,7 @@
         public function insert_ticket($usu_id,$cat_id,$tick_titulo,$tick_descrip){
             $conectar= parent::conexion();
             parent::set_names();
-            $sql="INSERT INTO tm_ticket (tick_id,usu_id,cat_id,tick_titulo,tick_descrip,tick_estado,fech_crea,est) VALUES (NULL,?,?,?,?,'Abierto',now(),'1');";
+            $sql="INSERT INTO tm_ticket (tick_id,usu_id,cat_id,tick_titulo,tick_descrip,tick_estado,fech_crea,usu_asig,fech_asig,est) VALUES (NULL,?,?,?,?,'Abierto',now(),NULL,NULL,'1');";
             $sql=$conectar->prepare($sql);
             $sql->bindValue(1, $usu_id);
             $sql->bindValue(2, $cat_id);
@@ -25,6 +25,8 @@
                 tm_ticket.tick_descrip,
                 tm_ticket.tick_estado,
                 tm_ticket.fech_crea,
+                tm_ticket.usu_asig,
+                tm_ticket.fech_asig,
                 tm_usuario.usu_nom,
                 tm_usuario.usu_ape,
                 tm_categoria.cat_nom
@@ -80,6 +82,8 @@
                 tm_ticket.tick_descrip,
                 tm_ticket.tick_estado,
                 tm_ticket.fech_crea,
+                tm_ticket.usu_asig,
+                tm_ticket.fech_asig,
                 tm_usuario.usu_nom,
                 tm_usuario.usu_ape,
                 tm_categoria.cat_nom
@@ -89,7 +93,7 @@
                 INNER join tm_usuario on tm_ticket.usu_id = tm_usuario.usu_id
                 WHERE
                 tm_ticket.est = 1
-                AND tm_usuario.usu_id=?";
+                ";
             $sql=$conectar->prepare($sql);
             $sql->execute();
             return $resultado=$sql->fetchAll();
@@ -194,21 +198,21 @@
         //     return $resultado=$sql->fetchAll();
         // }
 
-        // public function update_ticket_asignacion($tick_id,$usu_asig){
-        //     $conectar= parent::conexion();
-        //     parent::set_names();
-        //     $sql="update tm_ticket 
-        //         set	
-        //             usu_asig = ?,
-        //             fech_asig = now()
-        //         where
-        //             tick_id = ?";
-        //     $sql=$conectar->prepare($sql);
-        //     $sql->bindValue(1, $usu_asig);
-        //     $sql->bindValue(2, $tick_id);
-        //     $sql->execute();
-        //     return $resultado=$sql->fetchAll();
-        // }
+        public function update_ticket_asignacion($tick_id,$usu_asig){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="update tm_ticket 
+                set	
+                    usu_asig = ?,
+                    fech_asig = now()
+                where
+                    tick_id = ?";
+            $sql=$conectar->prepare($sql);
+            $sql->bindValue(1, $usu_asig);
+            $sql->bindValue(2, $tick_id);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
 
         public function get_ticket_total(){
             $conectar= parent::conexion();
@@ -237,20 +241,20 @@
             return $resultado=$sql->fetchAll();
         } 
 
-        // public function get_ticket_grafico(){
-        //     $conectar= parent::conexion();
-        //     parent::set_names();
-        //     $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
-        //         FROM   tm_ticket  JOIN  
-        //             tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
-        //         WHERE    
-        //         tm_ticket.est = 1
-        //         GROUP BY 
-        //         tm_categoria.cat_nom 
-        //         ORDER BY total DESC";
-        //     $sql=$conectar->prepare($sql);
-        //     $sql->execute();
-        //     return $resultado=$sql->fetchAll();
-        // }
+        public function get_ticket_grafico(){
+            $conectar= parent::conexion();
+            parent::set_names();
+            $sql="SELECT tm_categoria.cat_nom as nom,COUNT(*) AS total
+                FROM   tm_ticket  JOIN  
+                    tm_categoria ON tm_ticket.cat_id = tm_categoria.cat_id  
+                WHERE    
+                tm_ticket.est = 1
+                GROUP BY 
+                tm_categoria.cat_nom 
+                ORDER BY total DESC";
+            $sql=$conectar->prepare($sql);
+            $sql->execute();
+            return $resultado=$sql->fetchAll();
+        }
     }
 ?>

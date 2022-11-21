@@ -10,9 +10,9 @@ function init(){
 
 $(document).ready(function(){
 
-    // $.post("../../controller/usuario.php?op=combo", function (data) {
-    //     $('#usu_asig').html(data);
-    // });
+    $.post("../../controller/usuario.php?op=combo", function (data) {
+        $('#usu_asig').html(data);
+    });
 
     if (rol_id==1){
         tabla=$('#ticket_data').dataTable({
@@ -37,7 +37,7 @@ $(document).ready(function(){
                     console.log(e.responseText);	
                 }
             },
-            //"ordering": false,
+            // "ordering": false,
             "bDestroy": true,
             "responsive": true,
             "bInfo":true,
@@ -126,7 +126,6 @@ $(document).ready(function(){
 function ver(tick_id){
     window.open('http://localhost/fastfix/view/DetalleTicket/?ID='+ tick_id +'');
 }
-/*
 
 function asignar(tick_id){
     $.post("../../controller/ticket.php?op=mostrar", {tick_id : tick_id}, function (data) {
@@ -162,33 +161,33 @@ function guardar(e){
     });
 }
 
-function CambiarEstado(tick_id){
-    swal({
-        title: "HelpDesk",
-        text: "Esta seguro de Reabrir el Ticket?",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonClass: "btn-warning",
-        confirmButtonText: "Si",
-        cancelButtonText: "No",
-        closeOnConfirm: false
-    },
-    function(isConfirm) {
-        if (isConfirm) {
-            $.post("../../controller/ticket.php?op=reabrir", {tick_id : tick_id,usu_id : usu_id}, function (data) {
+// function CambiarEstado(tick_id){
+//     swal({
+//         title: "HelpDesk",
+//         text: "Esta seguro de Reabrir el Ticket?",
+//         type: "warning",
+//         showCancelButton: true,
+//         confirmButtonClass: "btn-warning",
+//         confirmButtonText: "Si",
+//         cancelButtonText: "No",
+//         closeOnConfirm: false
+//     },
+//     function(isConfirm) {
+//         if (isConfirm) {
+//             $.post("../../controller/ticket.php?op=reabrir", {tick_id : tick_id,usu_id : usu_id}, function (data) {
 
-            });
+//             });
 
-            $('#ticket_data').DataTable().ajax.reload();	
+//             $('#ticket_data').DataTable().ajax.reload();	
 
-            swal({
-                title: "HelpDesk!",
-                text: "Ticket Abierto.",
-                type: "success",
-                confirmButtonClass: "btn-success"
-            });
-        }
-    });
-}*/
+//             swal({
+//                 title: "HelpDesk!",
+//                 text: "Ticket Abierto.",
+//                 type: "success",
+//                 confirmButtonClass: "btn-success"
+//             });
+//         }
+//     });
+// }
 
 init();
