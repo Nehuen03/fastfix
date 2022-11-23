@@ -25,8 +25,10 @@
 
                 if ($row["rol_id"]=="1"){
                     $sub_array[] = '<span class="label label-pill label-success">Usuario</span>';
-                }else{
+                }else if($row["rol_id"]=="2"){
                     $sub_array[] = '<span class="label label-pill label-info">Soporte</span>';
+                }else{
+                    $sub_array[] = '<span class="label label-pill label-primary">Admin</span>';
                 }
 
                 $sub_array[] = '<button type="button" onClick="editar('.$row["usu_id"].');"  id="'.$row["usu_id"].'" class="btn btn-inline btn-warning btn-sm ladda-button"><i class="fa fa-edit"></i></button>';

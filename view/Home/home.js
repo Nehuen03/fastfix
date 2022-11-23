@@ -30,11 +30,11 @@ $(document).ready(function(){
                 xkey: 'nom',
                 ykeys: ['total'],
                 labels: ['Value'],
-                barColors: ["#1AB244"], 
+                barColors: ["#ff8000"], 
             });
         });
          
-    }else{
+    }else if ( $('#rol_idx').val() == 2){
         $.post("../../controller/ticket.php?op=total",function (data) {
             data = JSON.parse(data);
             $('#lbltotal').html(data.TOTAL);
@@ -60,8 +60,36 @@ $(document).ready(function(){
                 ykeys: ['total'],
                 labels: ['Value']
             });
-        }); 
+        });
 
+    }else{
+        $.post("../../controller/ticket.php?op=total",function (data) {
+            data = JSON.parse(data);
+            $('#lbltotal').html(data.TOTAL);
+        }); 
+    
+        $.post("../../controller/ticket.php?op=totalabierto",function (data) {
+            data = JSON.parse(data);
+            $('#lbltotalabierto').html(data.TOTAL);
+        });
+    
+        $.post("../../controller/ticket.php?op=totalcerrado", function (data) {
+            data = JSON.parse(data);
+            $('#lbltotalcerrado').html(data.TOTAL);
+        });  
+
+        $.post("../../controller/ticket.php?op=grafico",function (data) {
+            data = JSON.parse(data);
+    
+            new Morris.Bar({
+                element: 'divgrafico',
+                data: data,
+                xkey: 'nom',
+                ykeys: ['total'],
+                labels: ['Value'],
+                barColors: ["#1AB244"] 
+            });
+        });
     }
 });
 

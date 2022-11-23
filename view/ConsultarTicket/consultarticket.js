@@ -37,7 +37,6 @@ $(document).ready(function(){
                     console.log(e.responseText);	
                 }
             },
-            // "ordering": false,
             "bDestroy": true,
             "responsive": true,
             "bInfo":true,
