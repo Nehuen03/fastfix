@@ -25,9 +25,13 @@
 
                 if ($row["rol_id"]=="1"){
                     $sub_array[] = '<span class="label label-pill label-success">Usuario</span>';
-                }else if($row["rol_id"]=="2"){
+                } 
+                
+                if($row["rol_id"]=="2"){
                     $sub_array[] = '<span class="label label-pill label-info">Soporte</span>';
-                }else{
+                }
+                
+                if($row["rol_id"]=="3"){
                     $sub_array[] = '<span class="label label-pill label-primary">Admin</span>';
                 }
 
